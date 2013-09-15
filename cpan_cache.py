@@ -5,16 +5,17 @@
 import sys, os, os.path, shutil
 import urllib2
 import BaseHTTPServer
+import optparse
 
 class CPANCache:
   SOURCE_URL = 'http://cpan.metacpan.org'
 
   class Option:
     def __init__(self):
-      self.port       = 8800
+      self.port       = 9800
       self.cache_dir  = 'cache'
       self.source_url = CPANCache.SOURCE_URL
-      self.flat       = True
+      self.flat       = False
       self.cache_meta = False
 
   class FetchError(Exception):
@@ -127,5 +128,27 @@ class CPANCache:
     print >>sys.stderr, "Serving CPAN Cache on port %d ..." % (option.port)
     httpd.serve_forever()
 
+def run():
+  defopt = CPANCache.Option()
+
+  op = optparse.OptionParser()
+  op.add_option('-p', '--port', type='int', dest='port', default=defopt.port,
+                help='port number (default: %d)' % defopt.port)
+  op.add_option('-c', '--cache-dir', type='string', dest='cache_dir',
+                default=defopt.cache_dir,
+                help='cache directory (default: "%s")' % defopt.cache_dir)
+  op.add_option('-f', '--flat', dest='flat', action='store_true',
+                default=defopt.flat,
+                help='cache objects into a single flat directory')
+  op.add_option('-m', '--cache-metadata', dest='cache_meta',
+                action='store_true', default=defopt.cache_meta,
+                help='cache metadata (02packages.details.txt.gz)')
+  op.add_option('-s', '--source-url', type='string', dest='source_url',
+                default=defopt.source_url,
+                help='CPAN source URL (default: "%s")' % defopt.source_url)
+  (options, args) = op.parse_args()
+
+  CPANCache().run(options)
+
 if __name__ == '__main__':
-  CPANCache().run()
+  run()
