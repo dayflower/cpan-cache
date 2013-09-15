@@ -1,5 +1,10 @@
+CPAN-Cache
+==========
+
+Caching server for CPAN distribution installation.
+
 Usage
-=====
+-----
 
     $ python cpan_cache.py
     Serving CPAN Cache on port 8800 ...
@@ -11,7 +16,7 @@ Usage
     $ PERL_CARTON_MIRROR=http://localhost:8800/ carton install
 
 TODO
-====
+----
 
 * better document!
 * options
