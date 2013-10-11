@@ -44,7 +44,7 @@ Illustration
     ...
     ...
     44 distributions installed
-    Complete! Modules were installed into /home/ito/tmp/amon2-install/local1
+    Complete! Modules were installed into .../local1
     
     PERL_CARTON_MIRROR=http://localhost:9800/ carton install --path local1
       67.58s user 11.66s system 43% cpu 3:03.79 total
@@ -58,7 +58,7 @@ Illustration
     ...
     ...
     44 distributions installed
-    Complete! Modules were installed into /home/ito/tmp/amon2-install/local2
+    Complete! Modules were installed into .../local2
     PERL_CARTON_MIRROR=http://localhost:9800/ carton install --path local2
       63.44s user 11.27s system 92% cpu 1:20.56 total
 
